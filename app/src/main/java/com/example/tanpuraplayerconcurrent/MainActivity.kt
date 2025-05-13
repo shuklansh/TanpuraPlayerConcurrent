@@ -24,10 +24,13 @@ class MainActivity : ComponentActivity() {
         setContent {
             TanpuraPlayerConcurrentTheme {
                 AudioLooper(
-                    2000L,
+                    1200L,
                     mutableListOf(
                         R.raw.c_sp_3_pa,
-                        R.raw.c_sp_3_sa
+                        R.raw.c_sp_3_sa,
+                        R.raw.c_sp_3_kharaj,
+                        R.raw.g_sp_3_sa,
+                        R.raw.g_sp_3_kharaj,
                     )
                 )
             }
@@ -43,25 +46,25 @@ fun AudioLooper(interval: Long, audioIds: List<Int>) {
     LaunchedEffect(Unit) {
         while (true) {
             context.playAudio(
-                audioIds[1], scope, interval * 8,
-                PlaybackParams().setPitch(2f.pow(-11f/12))
+                audioIds[0], scope, interval * 8,
+                PlaybackParams().setPitch(2f.pow(10f/12))
             )
             delay(interval)
             context.playAudio(
-                audioIds[1], scope, interval,
-                PlaybackParams().setPitch(2f.pow(-4f/12))
+                audioIds[1], scope, interval * 6,
+                PlaybackParams().setPitch(2f.pow(10f/12))
             )
-            delay(interval / 2)
+            delay(interval)
             context.playAudio(
                 audioIds[1], scope, interval * 4,
-                PlaybackParams().setPitch(2f.pow(-4f/12))
+                PlaybackParams().setPitch(2f.pow(10f/12))
             )
             delay(interval)
             context.playAudio(
-                audioIds[1],
+                audioIds[2],
                 scope,
                 interval * 2,
-                PlaybackParams().setPitch(2f.pow(-16f/12))
+                PlaybackParams().setPitch(2f.pow(10f/12))
             )
             delay(interval)
         }
